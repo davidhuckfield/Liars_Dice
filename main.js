@@ -144,8 +144,8 @@ function computerMove(){
 }
 
 function playerBid(){
-  currentBid.number=dicenumber.value;
-  currentBid.face=diceface.value;
+  currentBid.number=parseInt(dicenumber.value);
+  currentBid.face=parseInt(diceface.value);
   currentbidbox.textContent=`The current bid is ${currentBid.number} ${currentBid.face}s`
   setTimeout(computerMove, 2000);
   callbluffbutton.style.display="block";
@@ -157,8 +157,13 @@ function countOccurrences(arr, num) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === num) {
       count++;
-  
+      console.log(`${arr[i]} is ${num}`);
+      console.log(typeof arr[i]);
     }
+    else {console.log(`${arr[i]} is not ${num}`);
+          console.log(`The type of player roll ${i} is ${typeof arr[i]}`);
+          console.log(`The type of ${num} is ${typeof num}`);
+        }
   }
   return count;
 }
@@ -166,9 +171,11 @@ function countOccurrences(arr, num) {
 callbluffbutton.addEventListener(`click`, callBluff);
 function callBluff(){
   console.log(`The current bid face is ${currentBid.face}`);
+  console.log(`The player roll is ${playerroll}`);
   let playertotal=countOccurrences(playerroll, currentBid.face)
-  let computertotal=countOccurrences(computerroll, currentBid.face);
   console.log(`Player has ${playertotal} ${currentBid.face}s`);
+  console.log(`The computer roll is ${computerroll}`);
+  let computertotal=countOccurrences(computerroll, currentBid.face);
   console.log(`Computer has ${computertotal} ${currentBid.face}s`);
   if ((playertotal+computertotal)>=currentBid.number) {
     currentbidbox.textContent=`They weren't bluffing! You lose a die`;
@@ -182,6 +189,8 @@ function callBluff(){
     rolldicebutton.style.display="block";
     console.log(computerhowmanydice);
   }
+  if (computerhowmanydice===0){currentbidbox.textContent="You win! The computer lost all their dice"}
+  if (playerhowmanydice===0){currentbidbox.textContent="You lose! You lost all your dice"}
 }
 
 callspotonbutton.addEventListener(`click`, callSpotOn);
