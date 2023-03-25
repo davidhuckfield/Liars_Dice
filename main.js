@@ -9,6 +9,7 @@ for (let i = 1; i <= 5; i++) {
 }
 console.log(playerdicelocations);
 const playerroll =[];
+const computerroll=[];
 
 namebutton.addEventListener(`click`, enterName);
 rolldicebutton.addEventListener(`click`, rollDice)

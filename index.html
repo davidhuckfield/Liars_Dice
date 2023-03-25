@@ -10,20 +10,32 @@
 <body>
     <h1>Liar's Dice</h1>
 <div id="namesection">
+    <p class="templabels">namesection</p>
     <p id="welcome-message">Welcome to Liar's Dice! Please enter your name</p>
     <input type="text" id="name-box">
     <button id="name-button">Enter Name</button>
   
 </div>
 <div id="playersection">
+    <p class="templabels">playersection</p>
     <button id="rolldice">Roll your Dice!</button>
     <p>Your Dice</p>
     <div id="playerroll">
+        <p class="templabels">playerroll</p>
         <div id="playerdice1" class="playerdice">1</div>
         <div id="playerdice2" class="playerdice">2</div>
         <div id="playerdice3" class="playerdice">3</div>
         <div id="playerdice4" class="playerdice">4</div>
         <div id="playerdice5" class="playerdice">5</div>
+    </div>
+    <div id="playermoves">
+        <p class="templabels">playermoves</p>
+        <div id="raisebid"><button id="raisebidbutton">Raise Bid</button>
+        <label for="raisedicenumber">How many dice</label><input type="text" id="raisedicenumber">
+        <label for="raisediceface">Face number</label><input type="text" id="raisediceface">
+        </div>
+        <div id="callbluff"><button id="callbluffbutton">Call Bluff</button></div>
+        <div id="callspoton"><button id="callspotonbutton">Call Spot On</button></div>
     </div>
 </div>
 <script src="main.js"></script>
