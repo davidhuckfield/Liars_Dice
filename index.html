@@ -5,13 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liar's Dice</title>
-    <link rel="stylesheet" src="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Liar's Dice</h1>
+<div id="namesection">
     <p id="welcome-message">Welcome to Liar's Dice! Please enter your name</p>
     <input type="text" id="name-box">
     <button id="name-button">Enter Name</button>
-    <script src="main.js"></script>
+  
+</div>
+<div id="playersection">
+    <button id="rolldice">Roll your Dice!</button>
+    <p>Your Dice</p>
+    <div id="playerroll">
+        <div id="playerdice1" class="playerdice">1</div>
+        <div id="playerdice2" class="playerdice">2</div>
+        <div id="playerdice3" class="playerdice">3</div>
+        <div id="playerdice4" class="playerdice">4</div>
+        <div id="playerdice5" class="playerdice">5</div>
+    </div>
+</div>
+<script src="main.js"></script>
 </body>
 </html>
