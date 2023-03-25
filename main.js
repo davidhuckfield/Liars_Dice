@@ -61,6 +61,8 @@ for (let i = 1; i <= 5; i++) {
 //create empty arrays for the player and computer dice rolls
 const playerroll =[];
 const computerroll=[];
+let playerstartingdice=5;
+let computerstartingdice=5;
 let playerhowmanydice=5;
 let computerhowmanydice=5;
 
@@ -69,6 +71,11 @@ rolldicebutton.addEventListener(`click`, rollDice)
 
 //start game function
 function rollDice (){
+    //first reset all the dice locations to nothing
+    for (let i=0; i<=playerstartingdice-1; i++) {
+    playerdicelocations[i].innerHTML = "";}
+    playerroll.length=playerhowmanydice;
+    console.log(`The player dice array has ${playerroll.length} entries`);
     // for loop to create the player dice roll - generate 5 random numbers between 1&6
     for (let i=0; i<=playerhowmanydice-1; i++) {
     let randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -83,13 +90,16 @@ function rollDice (){
     //set the image width and height to 50
     img.width = 50;
     img.height = 50;
-    //clear the existing contents of the dice location in the HTML
-    playerdicelocations[i].innerHTML = "";
     //add the new img element into the player dice location
     playerdicelocations[i].appendChild(img);
     }   
 
     //below does the same as above for the computer dice roll - for now they're visible for ease of creation, later will be hidden
+    for (let i=0; i<=computerstartingdice-1; i++) {
+      computerdicelocations[i].innerHTML = "";
+      computerroll.length=computerhowmanydice;
+      console.log(`The computer dice array has ${computerroll.length} entries`);
+    }
     for (let i=0; i<=computerhowmanydice-1; i++) {
       let randomNumber = Math.floor(Math.random() * 6) + 1;
       computerroll[i]=randomNumber;
@@ -98,7 +108,6 @@ function rollDice (){
       img.src = imgSrc;
       img.width = 50;
       img.height = 50;
-      computerdicelocations[i].innerHTML = "";
       computerdicelocations[i].appendChild(img);
       }   
 
@@ -126,12 +135,59 @@ bidbutton.addEventListener(`click`, playerBid);
 
 let currentBid = {number: 0, face: 0};
 
+function computerMove(){
+  let randomNumber = Math.floor(Math.random() * 2) + 1;
+  if (randomNumber===1){currentBid.number++;}
+  else {currentBid.face++;}
+  currentbidbox.textContent=`The computer has raised the bid to ${currentBid.number} ${currentBid.face}s`;
+
+}
+
 function playerBid(){
   currentBid.number=dicenumber.value;
   currentBid.face=diceface.value;
   currentbidbox.textContent=`The current bid is ${currentBid.number} ${currentBid.face}s`
+  setTimeout(computerMove, 2000);
+  callbluffbutton.style.display="block";
+  callspotonbutton.style.display="block";
 }
 
+function countOccurrences(arr, num) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === num) {
+      count++;
+  
+    }
+  }
+  return count;
+}
+
+callbluffbutton.addEventListener(`click`, callBluff);
+function callBluff(){
+  console.log(`The current bid face is ${currentBid.face}`);
+  let playertotal=countOccurrences(playerroll, currentBid.face)
+  let computertotal=countOccurrences(computerroll, currentBid.face);
+  console.log(`Player has ${playertotal} ${currentBid.face}s`);
+  console.log(`Computer has ${computertotal} ${currentBid.face}s`);
+  if ((playertotal+computertotal)>=currentBid.number) {
+    currentbidbox.textContent=`They weren't bluffing! You lose a die`;
+    playerhowmanydice--;
+    rolldicebutton.style.display="block";
+    console.log(playerhowmanydice);
+  }
+  else {
+    currentbidbox.textContent=`They were bluffing! They lose a die`;
+    computerhowmanydice--;
+    rolldicebutton.style.display="block";
+    console.log(computerhowmanydice);
+  }
+}
+
+callspotonbutton.addEventListener(`click`, callSpotOn);
+function callSpotOn(){
+
+}
 
 
 
