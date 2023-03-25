@@ -12,6 +12,19 @@ let callbluffbutton=document.querySelector(`#callbluffbutton`);
 let callspotonbutton=document.querySelector(`#callspotonbutton`);
 let bidbutton=document.querySelector(`#bidbutton`);
 let playermessage=document.querySelector(`#playermessage`);
+let dicenumber=document.querySelector(`#dicenumber`);
+let diceface=document.querySelector(`#diceface`);
+let currentbidbox=document.querySelector(`#currentbidbox`);
+
+//testing functions and buttons to check if rolling still works when players lose dice
+let testremovediceplayerbutton=document.querySelector(`#testremovediceplayer`);
+let testremovedicecomputerbutton=document.querySelector(`#testremovedicecomputer`);
+// testremovedicecomputerbutton.style.display="none";
+// testremovediceplayerbutton.style.display="none";
+testremovedicecomputerbutton.addEventListener(`click`, removeDiceComputer);
+testremovediceplayerbutton.addEventListener(`click`, removeDicePlayer);
+function removeDiceComputer(){computerhowmanydice--;}
+function removeDicePlayer(){playerhowmanydice--;}
 
 //hide the game section until name has been entered
 gamesection.style.display="none";
@@ -48,14 +61,16 @@ for (let i = 1; i <= 5; i++) {
 //create empty arrays for the player and computer dice rolls
 const playerroll =[];
 const computerroll=[];
+let playerhowmanydice=5;
+let computerhowmanydice=5;
 
 //add event listener to the Start Game button to run the start game function
-rolldicebutton.addEventListener(`click`, startGame)
+rolldicebutton.addEventListener(`click`, rollDice)
 
 //start game function
-function startGame (){
+function rollDice (){
     // for loop to create the player dice roll - generate 5 random numbers between 1&6
-    for (let i=0; i<=4; i++) {
+    for (let i=0; i<=playerhowmanydice-1; i++) {
     let randomNumber = Math.floor(Math.random() * 6) + 1;
     //store the random number in the playerroll array
     playerroll[i]=randomNumber;
@@ -75,7 +90,7 @@ function startGame (){
     }   
 
     //below does the same as above for the computer dice roll - for now they're visible for ease of creation, later will be hidden
-    for (let i=0; i<=4; i++) {
+    for (let i=0; i<=computerhowmanydice-1; i++) {
       let randomNumber = Math.floor(Math.random() * 6) + 1;
       computerroll[i]=randomNumber;
       let imgSrc = `images/dice${randomNumber}.png`;
@@ -105,13 +120,17 @@ function startGame (){
 //   bidbutton.textContent="Raise Bid";
 //   playermessage.textContent="The computer has played first! Raise or call."
 //   }
-
-
-
-
-
 }
 
+bidbutton.addEventListener(`click`, playerBid);
+
+let currentBid = {number: 0, face: 0};
+
+function playerBid(){
+  currentBid.number=dicenumber.value;
+  currentBid.face=diceface.value;
+  currentbidbox.textContent=`The current bid is ${currentBid.number} ${currentBid.face}s`
+}
 
 
 
