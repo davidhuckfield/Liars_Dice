@@ -1,5 +1,32 @@
-body {background-color:antiquewhite;}
+@font-face {
+    font-family: Reward;
+    src: url(RewardPersonalUseRegular-qZAl5.ttf);
+    }
+body {
+    background-color:rgb(234, 189, 130);
+    text-align:center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 div {border:1px solid black;}
+
+h1 {
+    font-family:Reward;
+    font-size: 5em;
+    color:darkred;
+    }
+
+button {
+    width:200px;
+    height:50px;
+}
+
+input {
+    width:200px;
+    height:50px;
+    font-size: 1.5em;
+    margin-bottom:20px;
+    }
+
 
 .templabels {
     font-size: x-small;
@@ -9,21 +36,31 @@ div {border:1px solid black;}
 #namesection {
     border: 2px solid black;
     padding:10px;
+    width:70%;
+    margin:10px auto 10px auto;
+    background-color:rgb(150, 120, 81);
+    color:antiquewhite;
 }
 
 #gamesection {
     border: 2px solid red;
-    padding:10px;
+    padding:2px;
     margin-top:20px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
 }
 
 #playersection {
-    width:45%;
+    width:60%;
     display:inline-block;
+    border:3px solid green;
+    margin:0;
 }
 #computersection {
-    width:45%;
+    width:30%;
     display:inline-block;
+    align-self:flex-start;
 }
 
 #playermessage {
@@ -33,17 +70,16 @@ display:block;
 #playerroll {
     display:flex;
     align-items:center;
+    width:50%;
 }
 
 .playerdice {
-    border:1px solid black;
-    display:inline-block;
+    display:block;
     width:50px;
     height:50px;
     text-align:center;
 }
 .computerdice{
-    border:1px solid black;
     display:inline-block;
     width:50px;
     height:50px;

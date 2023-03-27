@@ -180,12 +180,14 @@ function callBluff(){
   if ((playertotal+computertotal)>=currentBid.number) {
     currentbidbox.textContent=`They weren't bluffing! You lose a die`;
     playerhowmanydice--;
+    playerdicelocations[playerhowmanydice].innerHTML = ``;
     rolldicebutton.style.display="block";
     console.log(playerhowmanydice);
   }
   else {
     currentbidbox.textContent=`They were bluffing! They lose a die`;
     computerhowmanydice--;
+    computerdicelocations[computerhowmanydice].innerHTML = ``;
     rolldicebutton.style.display="block";
     console.log(computerhowmanydice);
   }
